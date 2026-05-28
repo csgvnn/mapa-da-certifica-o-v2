@@ -32,18 +32,18 @@ type Etapa = {
 };
 
 const ETAPAS: Etapa[] = [
-  { id: 1, titulo: "Planejamento e Desenho de Políticas Públicas", tipo: "sequencial", left: "11%", top: "33%" },
-  { id: 2, titulo: "Planejamento e Monitoramento Governamental", tipo: "sequencial", left: "39%", top: "33%" },
-  { id: 3, titulo: "Gestão e Elaboração de Planos Estratégicos", tipo: "sequencial", left: "61%", top: "27%" },
-  { id: 4, titulo: "Gestão dos objetivos e resultados chaves (OKRs) da organização", tipo: "sequencial", left: "89%", top: "30%" },
-  { id: 5, titulo: "Transformando Metas e Objetivos Estratégicos em Projetos", tipo: "sequencial", left: "88%", top: "53%" },
-  { id: 6, titulo: "Análise de Dados Aplicadas à Rede SIPOFE", tipo: "sequencial", left: "68%", top: "54%" },
-  { id: 7, titulo: "Análise de Políticas Públicas", tipo: "sequencial", left: "50%", top: "58%" },
-  { id: 8, titulo: "Inteligência Artificial e Ferramentas Generativas (Livre EAD)", tipo: "flexivel", left: "13%", top: "85%" },
-  { id: 9, titulo: "Indicadores de Desempenho (Livre EAD)", tipo: "flexivel", left: "31%", top: "87%" },
-  { id: 10, titulo: "Design Thinking para Inovação no Setor Público (Livre)", tipo: "flexivel", left: "48%", top: "85%" },
-  { id: 11, titulo: "Execução Orçamentária e Financeira - Módulo I (Livre)", tipo: "flexivel", left: "68%", top: "85%" },
-  { id: 12, titulo: "Economia do Setor Público (Livre)", tipo: "flexivel", left: "86%", top: "85%" },
+  { id: 1, titulo: "Planejamento e Desenho de Políticas Públicas", tipo: "sequencial", left: "11%", top: "31%" },
+  { id: 2, titulo: "Planejamento e Monitoramento Governamental", tipo: "sequencial", left: "37%", top: "33%" },
+  { id: 3, titulo: "Gestão e Elaboração de Planos Estratégicos", tipo: "sequencial", left: "61%", top: "26%" },
+  { id: 4, titulo: "Gestão dos objetivos e resultados chaves (OKRs) da organização", tipo: "sequencial", left: "88%", top: "28%" },
+  { id: 5, titulo: "Transformando Metas e Objetivos Estratégicos em Projetos", tipo: "sequencial", left: "83%", top: "49%" },
+  { id: 6, titulo: "Análise de Dados Aplicadas à Rede SIPOFE", tipo: "sequencial", left: "66%", top: "54%" },
+  { id: 7, titulo: "Análise de Políticas Públicas", tipo: "sequencial", left: "44%", top: "54%" },
+  { id: 8, titulo: "Inteligência Artificial e Ferramentas Generativas (Livre EAD)", tipo: "flexivel", left: "26%", top: "52%" },
+  { id: 9, titulo: "Indicadores de Desempenho (Livre EAD)", tipo: "flexivel", left: "14%", top: "77%" },
+  { id: 10, titulo: "Design Thinking para Inovação no Setor Público (Livre)", tipo: "flexivel", left: "34%", top: "78%" },
+  { id: 11, titulo: "Execução Orçamentária e Financeira - Módulo I (Livre)", tipo: "flexivel", left: "52%", top: "79%" },
+  { id: 12, titulo: "Economia do Setor Público (Livre)", tipo: "flexivel", left: "72%", top: "79%" },
 ];
 
 const STORAGE_KEY = "mapa-certificacao-progresso";
@@ -74,7 +74,19 @@ function MapaCertificacao() {
     } catch {}
   }, [nome]);
 
+  const isBloqueada = (etapa: Etapa) => {
+    if (etapa.tipo !== "sequencial" || etapa.id === 1) return false;
+    return !concluidas.includes(etapa.id - 1);
+  };
+
   const toggle = (id: number) => {
+    const etapa = ETAPAS.find((e) => e.id === id);
+    if (!etapa) return;
+    const jaFeita = concluidas.includes(id);
+    if (!jaFeita && isBloqueada(etapa)) {
+      alert(`Você precisa concluir a etapa ${id - 1} antes de iniciar a etapa ${id}.`);
+      return;
+    }
     setConcluidas((prev) =>
       prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id].sort((a, b) => a - b),
     );
@@ -174,24 +186,29 @@ function MapaCertificacao() {
 
           {ETAPAS.map((e) => {
             const done = concluidas.includes(e.id);
+            const locked = !done && isBloqueada(e);
             return (
               <button
                 key={e.id}
                 onClick={() => toggle(e.id)}
-                title={e.titulo}
-                className="absolute -translate-x-1/2 -translate-y-1/2 transition-transform hover:scale-110"
+                title={locked ? `Bloqueada — conclua a etapa ${e.id - 1} primeiro` : e.titulo}
+                className={`absolute -translate-x-1/2 -translate-y-1/2 transition-transform ${
+                  locked ? "cursor-not-allowed opacity-70" : "hover:scale-110"
+                }`}
                 style={{ left: e.left, top: e.top }}
               >
                 <div
                   className={`w-9 h-9 md:w-11 md:h-11 rounded-full flex items-center justify-center border-[3px] shadow-lg font-black text-sm md:text-base ${
                     done
                       ? "bg-emerald-500 border-emerald-900 text-white"
-                      : e.tipo === "sequencial"
-                        ? "bg-amber-100 border-amber-900 text-amber-950"
-                        : "bg-orange-400 border-orange-900 text-orange-950"
+                      : locked
+                        ? "bg-stone-600 border-stone-900 text-stone-300"
+                        : e.tipo === "sequencial"
+                          ? "bg-amber-100 border-amber-900 text-amber-950"
+                          : "bg-orange-400 border-orange-900 text-orange-950"
                   }`}
                 >
-                  {done ? <Check size={18} strokeWidth={3} /> : e.id}
+                  {done ? <Check size={18} strokeWidth={3} /> : locked ? "🔒" : e.id}
                 </div>
               </button>
             );
