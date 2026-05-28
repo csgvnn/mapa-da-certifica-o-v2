@@ -225,7 +225,9 @@ function MapaCertificacao() {
             <img
               src="https://cdn-icons-png.flaticon.com/512/3068/3068322.png"
               alt="Pirata"
-              className="absolute w-16 md:w-20 -translate-x-1/2 pointer-events-none transition-all duration-1000 ease-in-out drop-shadow-[0_8px_8px_rgba(0,0,0,0.5)]"
+              className={`absolute w-16 md:w-20 pointer-events-none drop-shadow-[0_8px_8px_rgba(0,0,0,0.5)] transition-[left,top] duration-1000 ease-in-out ${
+                comemorando ? "animate-pirate-celebrate" : "animate-pirate-walk"
+              }`}
               style={{ left: ultima.left, top: `calc(${ultima.top} - 60px)` }}
             />
           )}
