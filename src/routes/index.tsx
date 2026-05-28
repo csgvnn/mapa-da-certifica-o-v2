@@ -259,27 +259,35 @@ function SidebarSecao({
       <ul className="space-y-2">
         {etapas.map((e) => {
           const done = concluidas.includes(e.id);
+          const locked =
+            !done && e.tipo === "sequencial" && e.id > 1 && !concluidas.includes(e.id - 1);
           return (
             <li key={e.id}>
               <div
-                onClick={() => onToggle(e.id)}
-                className="flex items-start gap-3 p-3 rounded-lg border transition-colors cursor-pointer bg-amber-950/30 border-amber-900/40 hover:bg-amber-900/30"
+                onClick={() => !locked && onToggle(e.id)}
+                title={locked ? `Bloqueada — conclua a etapa ${e.id - 1} primeiro` : undefined}
+                className={`flex items-start gap-3 p-3 rounded-lg border transition-colors bg-amber-950/30 border-amber-900/40 ${
+                  locked ? "opacity-60 cursor-not-allowed" : "cursor-pointer hover:bg-amber-900/30"
+                }`}
               >
                 <button
+                  disabled={locked}
                   className={`mt-0.5 w-6 h-6 rounded-md flex items-center justify-center border-2 flex-shrink-0 transition-colors ${
                     done
                       ? "bg-emerald-500 border-emerald-700 text-white"
-                      : "bg-transparent border-amber-700/60"
+                      : locked
+                        ? "bg-stone-700 border-stone-800 text-stone-300"
+                        : "bg-transparent border-amber-700/60"
                   }`}
                   title={done ? "Marcar como não concluída" : "Marcar como concluída"}
                 >
-                  {done && <Check size={14} strokeWidth={3} />}
+                  {done ? <Check size={14} strokeWidth={3} /> : locked ? <span className="text-[10px]">🔒</span> : null}
                 </button>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
                     <span className="text-xs font-bold text-amber-500/80">#{e.id}</span>
                   </div>
-                  <p className={`text-sm leading-snug ${done ? "line-through text-stone-300/60" : "text-stone-200"}`}>
+                  <p className={`text-sm leading-snug ${done ? "line-through text-stone-300/60" : locked ? "text-stone-400" : "text-stone-200"}`}>
                     {e.titulo}
                   </p>
                 </div>
@@ -287,6 +295,7 @@ function SidebarSecao({
             </li>
           );
         })}
+
       </ul>
     </div>
   );
