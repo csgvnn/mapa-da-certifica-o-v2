@@ -74,7 +74,19 @@ function MapaCertificacao() {
     } catch {}
   }, [nome]);
 
+  const isBloqueada = (etapa: Etapa) => {
+    if (etapa.tipo !== "sequencial" || etapa.id === 1) return false;
+    return !concluidas.includes(etapa.id - 1);
+  };
+
   const toggle = (id: number) => {
+    const etapa = ETAPAS.find((e) => e.id === id);
+    if (!etapa) return;
+    const jaFeita = concluidas.includes(id);
+    if (!jaFeita && isBloqueada(etapa)) {
+      alert(`Você precisa concluir a etapa ${id - 1} antes de iniciar a etapa ${id}.`);
+      return;
+    }
     setConcluidas((prev) =>
       prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id].sort((a, b) => a - b),
     );
