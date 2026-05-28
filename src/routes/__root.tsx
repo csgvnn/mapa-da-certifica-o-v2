@@ -72,14 +72,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "Mapa da Certificação - Planejamento" },
+      { name: "description", content: "Mapa da certificação - V2 is an interactive map application for tracking certification progress." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "Mapa da Certificação - Planejamento" },
+      { property: "og:description", content: "Mapa da certificação - V2 is an interactive map application for tracking certification progress." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Mapa da Certificação - Planejamento" },
+      { name: "twitter:description", content: "Mapa da certificação - V2 is an interactive map application for tracking certification progress." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2d7482b5-2fc0-455c-b96c-3c9f0cebfa57/id-preview-5b10046c--57ec6443-bb9d-494e-a6cf-6100d6732524.lovable.app-1779974406936.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2d7482b5-2fc0-455c-b96c-3c9f0cebfa57/id-preview-5b10046c--57ec6443-bb9d-494e-a6cf-6100d6732524.lovable.app-1779974406936.png" },
     ],
     links: [
       {
