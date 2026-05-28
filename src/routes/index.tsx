@@ -79,6 +79,8 @@ function MapaCertificacao() {
     return !concluidas.includes(etapa.id - 1);
   };
 
+  const [comemorando, setComemorando] = useState(false);
+
   const toggle = (id: number) => {
     const etapa = ETAPAS.find((e) => e.id === id);
     if (!etapa) return;
@@ -90,7 +92,12 @@ function MapaCertificacao() {
     setConcluidas((prev) =>
       prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id].sort((a, b) => a - b),
     );
+    if (!jaFeita) {
+      setComemorando(true);
+      window.setTimeout(() => setComemorando(false), 2400);
+    }
   };
+
 
   const reiniciar = () => {
     if (confirm("Tem certeza que deseja reiniciar todo o progresso?")) setConcluidas([]);
