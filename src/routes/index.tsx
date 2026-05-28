@@ -32,18 +32,18 @@ type Etapa = {
 };
 
 const ETAPAS: Etapa[] = [
-  { id: 1, titulo: "Planejamento e Desenho de Políticas Públicas", tipo: "sequencial", left: "11%", top: "33%" },
-  { id: 2, titulo: "Planejamento e Monitoramento Governamental", tipo: "sequencial", left: "39%", top: "33%" },
-  { id: 3, titulo: "Gestão e Elaboração de Planos Estratégicos", tipo: "sequencial", left: "61%", top: "27%" },
-  { id: 4, titulo: "Gestão dos objetivos e resultados chaves (OKRs) da organização", tipo: "sequencial", left: "89%", top: "30%" },
-  { id: 5, titulo: "Transformando Metas e Objetivos Estratégicos em Projetos", tipo: "sequencial", left: "88%", top: "53%" },
-  { id: 6, titulo: "Análise de Dados Aplicadas à Rede SIPOFE", tipo: "sequencial", left: "68%", top: "54%" },
-  { id: 7, titulo: "Análise de Políticas Públicas", tipo: "sequencial", left: "50%", top: "58%" },
-  { id: 8, titulo: "Inteligência Artificial e Ferramentas Generativas (Livre EAD)", tipo: "flexivel", left: "13%", top: "85%" },
-  { id: 9, titulo: "Indicadores de Desempenho (Livre EAD)", tipo: "flexivel", left: "31%", top: "87%" },
-  { id: 10, titulo: "Design Thinking para Inovação no Setor Público (Livre)", tipo: "flexivel", left: "48%", top: "85%" },
-  { id: 11, titulo: "Execução Orçamentária e Financeira - Módulo I (Livre)", tipo: "flexivel", left: "68%", top: "85%" },
-  { id: 12, titulo: "Economia do Setor Público (Livre)", tipo: "flexivel", left: "86%", top: "85%" },
+  { id: 1, titulo: "Planejamento e Desenho de Políticas Públicas", tipo: "sequencial", left: "11%", top: "31%" },
+  { id: 2, titulo: "Planejamento e Monitoramento Governamental", tipo: "sequencial", left: "37%", top: "33%" },
+  { id: 3, titulo: "Gestão e Elaboração de Planos Estratégicos", tipo: "sequencial", left: "61%", top: "26%" },
+  { id: 4, titulo: "Gestão dos objetivos e resultados chaves (OKRs) da organização", tipo: "sequencial", left: "88%", top: "28%" },
+  { id: 5, titulo: "Transformando Metas e Objetivos Estratégicos em Projetos", tipo: "sequencial", left: "83%", top: "49%" },
+  { id: 6, titulo: "Análise de Dados Aplicadas à Rede SIPOFE", tipo: "sequencial", left: "66%", top: "54%" },
+  { id: 7, titulo: "Análise de Políticas Públicas", tipo: "sequencial", left: "44%", top: "54%" },
+  { id: 8, titulo: "Inteligência Artificial e Ferramentas Generativas (Livre EAD)", tipo: "flexivel", left: "26%", top: "52%" },
+  { id: 9, titulo: "Indicadores de Desempenho (Livre EAD)", tipo: "flexivel", left: "14%", top: "77%" },
+  { id: 10, titulo: "Design Thinking para Inovação no Setor Público (Livre)", tipo: "flexivel", left: "34%", top: "78%" },
+  { id: 11, titulo: "Execução Orçamentária e Financeira - Módulo I (Livre)", tipo: "flexivel", left: "52%", top: "79%" },
+  { id: 12, titulo: "Economia do Setor Público (Livre)", tipo: "flexivel", left: "72%", top: "79%" },
 ];
 
 const STORAGE_KEY = "mapa-certificacao-progresso";
