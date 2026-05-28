@@ -206,17 +206,27 @@
   margin-left:15px 
 }
 /* Caixinha 8 — Inteligência Artificial e Ferramentas Generativas */
-#caixinha-8 { }
+#caixinha-8 { 
+  margin-top:-40px;
+  margin-left:50px }
 
 /* Caixinha 9 — Indicadores de Desempenho */
-#caixinha-9 { }
+#caixinha-9 { 
+  margin-left: 22px }
 
 /* Caixinha 10 — Design Thinking para Inovação no Setor Público */
-#caixinha-10 { }
+#caixinha-10 {
+  margin-top:-25px;
+  margin-left:35px
+ }
 
 /* Caixinha 11 — Execução Orçamentária e Financeira - Módulo I */
-#caixinha-11 { }
+#caixinha-11 { 
+  margin-top:10px;
+  margin-left:15px}
 
 /* Caixinha 12 — Economia do Setor Público */
-#caixinha-12 { }
+#caixinha-12 {
+  margin-top:-15px;
+  margin-left:-15px }
 
