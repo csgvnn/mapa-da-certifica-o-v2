@@ -186,24 +186,29 @@ function MapaCertificacao() {
 
           {ETAPAS.map((e) => {
             const done = concluidas.includes(e.id);
+            const locked = !done && isBloqueada(e);
             return (
               <button
                 key={e.id}
                 onClick={() => toggle(e.id)}
-                title={e.titulo}
-                className="absolute -translate-x-1/2 -translate-y-1/2 transition-transform hover:scale-110"
+                title={locked ? `Bloqueada — conclua a etapa ${e.id - 1} primeiro` : e.titulo}
+                className={`absolute -translate-x-1/2 -translate-y-1/2 transition-transform ${
+                  locked ? "cursor-not-allowed opacity-70" : "hover:scale-110"
+                }`}
                 style={{ left: e.left, top: e.top }}
               >
                 <div
                   className={`w-9 h-9 md:w-11 md:h-11 rounded-full flex items-center justify-center border-[3px] shadow-lg font-black text-sm md:text-base ${
                     done
                       ? "bg-emerald-500 border-emerald-900 text-white"
-                      : e.tipo === "sequencial"
-                        ? "bg-amber-100 border-amber-900 text-amber-950"
-                        : "bg-orange-400 border-orange-900 text-orange-950"
+                      : locked
+                        ? "bg-stone-600 border-stone-900 text-stone-300"
+                        : e.tipo === "sequencial"
+                          ? "bg-amber-100 border-amber-900 text-amber-950"
+                          : "bg-orange-400 border-orange-900 text-orange-950"
                   }`}
                 >
-                  {done ? <Check size={18} strokeWidth={3} /> : e.id}
+                  {done ? <Check size={18} strokeWidth={3} /> : locked ? "🔒" : e.id}
                 </div>
               </button>
             );
