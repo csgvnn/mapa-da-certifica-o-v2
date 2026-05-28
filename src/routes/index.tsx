@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { Check, Trophy } from "lucide-react";
 import treasureMap from "@/assets/treasure-map.png";
+import pirateImg from "@/assets/pirate.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -223,7 +224,7 @@ function MapaCertificacao() {
 
           {ultima && (
             <img
-              src="https://cdn-icons-png.flaticon.com/512/3068/3068322.png"
+              src={pirateImg}
               alt="Pirata"
               className={`absolute w-16 md:w-20 pointer-events-none drop-shadow-[0_8px_8px_rgba(0,0,0,0.5)] transition-[left,top] duration-1000 ease-in-out ${
                 comemorando ? "animate-pirate-celebrate" : "animate-pirate-walk"
