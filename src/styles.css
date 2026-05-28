@@ -156,3 +156,48 @@
   50%      { transform: translateX(-50%) scale(1.15) rotate(-8deg); }
 }
 .animate-pirate-celebrate { animation: pirate-celebrate 0.8s ease-in-out 3; }
+
+/* ============================================================
+   IDENTIFICADORES DAS CAIXINHAS DO MAPA
+   ============================================================
+   Cada classe abaixo representa uma caixinha de etapa no mapa.
+   Use esses seletores para customizar posições, cores, tamanhos
+   ou animações de forma individual.
+   Arquivo original: src/routes/index.tsx  (elementos com id="caixinha-N")
+   ============================================================ */
+
+/* Caixinha 1 — Planejamento e Desenho de Políticas Públicas */
+.caixinha-1 { }
+
+/* Caixinha 2 — Planejamento e Monitoramento Governamental */
+.caixinha-2 { }
+
+/* Caixinha 3 — Gestão e Elaboração de Planos Estratégicos */
+.caixinha-3 { }
+
+/* Caixinha 4 — OKRs da organização */
+.caixinha-4 { }
+
+/* Caixinha 5 — Transformando Metas e Objetivos Estratégicos em Projetos */
+.caixinha-5 { }
+
+/* Caixinha 6 — Análise de Dados Aplicadas à Rede SIPOFE */
+.caixinha-6 { }
+
+/* Caixinha 7 — Análise de Políticas Públicas */
+.caixinha-7 { }
+
+/* Caixinha 8 — Inteligência Artificial e Ferramentas Generativas */
+.caixinha-8 { }
+
+/* Caixinha 9 — Indicadores de Desempenho */
+.caixinha-9 { }
+
+/* Caixinha 10 — Design Thinking para Inovação no Setor Público */
+.caixinha-10 { }
+
+/* Caixinha 11 — Execução Orçamentária e Financeira - Módulo I */
+.caixinha-11 { }
+
+/* Caixinha 12 — Economia do Setor Público */
+.caixinha-12 { }

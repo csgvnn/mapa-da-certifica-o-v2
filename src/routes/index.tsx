@@ -198,6 +198,7 @@ function MapaCertificacao() {
             return (
               <button
                 key={e.id}
+                id={`caixinha-${e.id}`}
                 onClick={() => toggle(e.id)}
                 title={locked ? `Bloqueada — conclua a etapa ${e.id - 1} primeiro` : e.titulo}
                 className={`absolute -translate-x-1/2 -translate-y-1/2 transition-transform ${
@@ -206,7 +207,7 @@ function MapaCertificacao() {
                 style={{ left: e.left, top: e.top }}
               >
                 <div
-                  className={`w-9 h-9 md:w-11 md:h-11 rounded-full flex items-center justify-center border-[3px] shadow-lg font-black text-sm md:text-base ${
+                  className={`caixinha-etapa caixinha-${e.id} w-9 h-9 md:w-11 md:h-11 rounded-full flex items-center justify-center border-[3px] shadow-lg font-black text-sm md:text-base ${
                     done
                       ? "bg-emerald-500 border-emerald-900 text-white"
                       : locked
