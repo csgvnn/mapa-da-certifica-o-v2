@@ -169,7 +169,7 @@
 /* Caixinha 1 — Planejamento e Desenho de Políticas Públicas */
 #caixinha-1 { 
   margin-top:10px;
-  margin-left:10px
+  margin-left:5px
 }
 /* Caixinha 2 — Planejamento e Monitoramento Governamental */
 #caixinha-2 {
@@ -183,7 +183,7 @@
 /* Caixinha 4 — OKRs da organização */
 #caixinha-4 {
   margin-top:-15px;
-  margin-left:20px
+  margin-left:10px
 }
 /* Caixinha 5 — Transformando Metas e Objetivos Estratégicos em Projetos */
 #caixinha-5 {
@@ -193,7 +193,7 @@
 /* Caixinha 6 — Análise de Dados Aplicadas à Rede SIPOFE */
 #caixinha-6 {
    margin-top:14px;
-   margin-left:10px 
+   margin-left:-20px 
  }
 /* Caixinha 7 — Análise de Políticas Públicas */
 #caixinha-7 {
@@ -212,16 +212,16 @@
 /* Caixinha 10 — Design Thinking para Inovação no Setor Público */
 #caixinha-10 {
   margin-top:-10px;
-  margin-left:-30px
+  margin-left:50px
 }
 /* Caixinha 11 — Execução Orçamentária e Financeira - Módulo I */
 #caixinha-11 { 
-  margin-top:10px;
+  margin-top:20px;
   margin-left:40px
 }
 /* Caixinha 12 — Economia do Setor Público */
 #caixinha-12 {
-  margin-top:10px;
-  margin-left:-20px
+  margin-top:15px;
+  margin-left:20px
 }
 
