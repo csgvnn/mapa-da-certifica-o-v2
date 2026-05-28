@@ -142,3 +142,17 @@
     color: var(--color-foreground);
   }
 }
+
+@keyframes pirate-walk {
+  0%, 100% { transform: translateX(-50%) translateY(0) rotate(-3deg); }
+  25%      { transform: translateX(-50%) translateY(-4px) rotate(2deg); }
+  50%      { transform: translateX(-50%) translateY(0) rotate(3deg); }
+  75%      { transform: translateX(-50%) translateY(-4px) rotate(-2deg); }
+}
+.animate-pirate-walk { animation: pirate-walk 0.6s ease-in-out infinite; }
+
+@keyframes pirate-celebrate {
+  0%, 100% { transform: translateX(-50%) scale(1) rotate(0); }
+  50%      { transform: translateX(-50%) scale(1.15) rotate(-8deg); }
+}
+.animate-pirate-celebrate { animation: pirate-celebrate 0.8s ease-in-out 3; }
