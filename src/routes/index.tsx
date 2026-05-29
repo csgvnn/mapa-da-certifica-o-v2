@@ -1,8 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
-import { Check, Trophy } from "lucide-react";
+import { Check, Trophy, Flag } from "lucide-react";
 import treasureMap from "@/assets/treasure-map.png";
 import pirateImg from "@/assets/pirate.png";
+import mermaidImg from "@/assets/mermaid.png";
+import parrotImg from "@/assets/parrot.png";
+import seaMonsterImg from "@/assets/sea-monster.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -47,12 +50,28 @@ const ETAPAS: Etapa[] = [
   { id: 12, titulo: "Economia do Setor Público (Livre)", tipo: "flexivel", left: "75.3%", top: "78.7%" },
 ];
 
+// Posição do baú do tesouro no mapa (ajuste fino via styles.css se necessário)
+const BAU_POS = { left: "50%", top: "93%" };
+
+const AVATARS = [
+  { id: "pirata", nome: "Pirata", img: pirateImg },
+  { id: "sereia", nome: "Sereia", img: mermaidImg },
+  { id: "papagaio", nome: "Papagaio", img: parrotImg },
+  { id: "monstro", nome: "Monstro do Mar", img: seaMonsterImg },
+] as const;
+
+type AvatarId = (typeof AVATARS)[number]["id"];
+
 const STORAGE_KEY = "mapa-certificacao-progresso";
 const NAME_KEY = "mapa-certificacao-nome";
+const AVATAR_KEY = "mapa-certificacao-avatar";
+const FINALIZADA_KEY = "mapa-certificacao-finalizada";
 
 function MapaCertificacao() {
   const [concluidas, setConcluidas] = useState<number[]>([]);
   const [nome, setNome] = useState("");
+  const [avatar, setAvatar] = useState<AvatarId>("pirata");
+  const [finalizada, setFinalizada] = useState(false);
 
   useEffect(() => {
     try {
@@ -60,6 +79,10 @@ function MapaCertificacao() {
       if (raw) setConcluidas(JSON.parse(raw));
       const n = localStorage.getItem(NAME_KEY);
       if (n) setNome(n);
+      const a = localStorage.getItem(AVATAR_KEY) as AvatarId | null;
+      if (a && AVATARS.some((x) => x.id === a)) setAvatar(a);
+      const f = localStorage.getItem(FINALIZADA_KEY);
+      if (f === "1") setFinalizada(true);
     } catch {}
   }, []);
 
@@ -74,6 +97,18 @@ function MapaCertificacao() {
       localStorage.setItem(NAME_KEY, nome);
     } catch {}
   }, [nome]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(AVATAR_KEY, avatar);
+    } catch {}
+  }, [avatar]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(FINALIZADA_KEY, finalizada ? "1" : "0");
+    } catch {}
+  }, [finalizada]);
 
   const isBloqueada = (etapa: Etapa) => {
     if (etapa.tipo !== "sequencial" || etapa.id === 1) return false;
@@ -90,6 +125,8 @@ function MapaCertificacao() {
       alert(`Você precisa concluir a etapa ${id - 1} antes de iniciar a etapa ${id}.`);
       return;
     }
+    // se desmarcar algo, sai do estado finalizado
+    if (jaFeita && finalizada) setFinalizada(false);
     setConcluidas((prev) =>
       prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id].sort((a, b) => a - b),
     );
@@ -99,21 +136,35 @@ function MapaCertificacao() {
     }
   };
 
-
   const reiniciar = () => {
-    if (confirm("Tem certeza que deseja reiniciar todo o progresso?")) setConcluidas([]);
+    if (confirm("Tem certeza que deseja reiniciar todo o progresso?")) {
+      setConcluidas([]);
+      setFinalizada(false);
+    }
   };
 
   const total = ETAPAS.length;
   const feitas = concluidas.length;
   const pct = Math.round((feitas / total) * 100);
+  const todasConcluidas = feitas === total;
 
-  // pirata segue a última etapa concluída
-  const ultima = useMemo(() => {
+  const finalizarJornada = () => {
+    if (!todasConcluidas) return;
+    setFinalizada(true);
+    setComemorando(true);
+    window.setTimeout(() => setComemorando(false), 3500);
+  };
+
+  // pirata segue a última etapa concluída — ou vai para o baú se finalizada
+  const posPersonagem = useMemo(() => {
+    if (finalizada) return BAU_POS;
     if (concluidas.length === 0) return null;
     const id = concluidas[concluidas.length - 1];
-    return ETAPAS.find((e) => e.id === id) ?? null;
-  }, [concluidas]);
+    const e = ETAPAS.find((x) => x.id === id);
+    return e ? { left: e.left, top: e.top } : null;
+  }, [concluidas, finalizada]);
+
+  const avatarAtual = AVATARS.find((a) => a.id === avatar) ?? AVATARS[0];
 
   return (
     <div className="min-h-screen bg-[#1a1410] text-amber-50 flex flex-col lg:flex-row">
@@ -147,6 +198,34 @@ function MapaCertificacao() {
           />
         </div>
 
+        <div className="mb-4 rounded-xl bg-amber-950/40 p-4 border border-amber-800/40">
+          <label className="block text-xs font-semibold text-stone-300 mb-2 uppercase tracking-wider">
+            Escolha seu avatar
+          </label>
+          <div className="grid grid-cols-4 gap-2">
+            {AVATARS.map((a) => {
+              const selecionado = avatar === a.id;
+              return (
+                <button
+                  key={a.id}
+                  onClick={() => setAvatar(a.id)}
+                  title={a.nome}
+                  className={`flex flex-col items-center gap-1 p-2 rounded-lg border-2 transition-all ${
+                    selecionado
+                      ? "border-amber-400 bg-amber-900/40 scale-105 shadow-lg"
+                      : "border-amber-800/40 bg-[#1a1410] hover:border-amber-600/60"
+                  }`}
+                >
+                  <img src={a.img} alt={a.nome} className="w-12 h-12 object-contain" />
+                  <span className="text-[10px] font-semibold text-stone-300 leading-tight text-center">
+                    {a.nome}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
         <div className="mb-6 rounded-xl bg-amber-950/40 p-4 border border-amber-800/40">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm font-semibold flex items-center gap-2">
@@ -162,6 +241,22 @@ function MapaCertificacao() {
               style={{ width: `${pct}%` }}
             />
           </div>
+
+          <button
+            onClick={finalizarJornada}
+            disabled={!todasConcluidas || finalizada}
+            className={`mt-3 w-full flex items-center justify-center gap-2 rounded-lg py-2 px-3 text-sm font-bold border-2 transition-all ${
+              !todasConcluidas
+                ? "bg-stone-800/40 border-stone-700/40 text-stone-500 cursor-not-allowed"
+                : finalizada
+                  ? "bg-emerald-700/40 border-emerald-500/60 text-emerald-200 cursor-default"
+                  : "bg-gradient-to-r from-amber-500 to-yellow-400 border-amber-300 text-amber-950 hover:brightness-110 shadow-lg animate-pulse"
+            }`}
+          >
+            <Flag size={16} />
+            {finalizada ? "Jornada Finalizada!" : "Finalizar Jornada"}
+          </button>
+
           <button
             onClick={reiniciar}
             className="mt-3 text-xs text-stone-200/70 hover:text-stone-300 underline"
@@ -223,21 +318,26 @@ function MapaCertificacao() {
             );
           })}
 
-          {ultima && (
+          {posPersonagem && (
             <img
-              src={pirateImg}
-              alt="Pirata"
-              className={`absolute w-16 md:w-20 pointer-events-none drop-shadow-[0_8px_8px_rgba(0,0,0,0.5)] transition-[left,top] duration-1000 ease-in-out ${
+              src={avatarAtual.img}
+              alt={avatarAtual.nome}
+              className={`absolute w-16 md:w-20 pointer-events-none drop-shadow-[0_8px_8px_rgba(0,0,0,0.5)] transition-[left,top] duration-1000 ease-in-out -translate-x-1/2 ${
                 comemorando ? "animate-pirate-celebrate" : "animate-pirate-walk"
               }`}
-              style={{ left: ultima.left, top: `calc(${ultima.top} - 60px)` }}
+              style={{
+                left: posPersonagem.left,
+                top: `calc(${posPersonagem.top} - 60px)`,
+              }}
             />
           )}
         </div>
 
         {nome && (
           <p className="text-center mt-4 text-stone-300/80 italic">
-            Boa jornada, Capitão(ã) <span className="font-bold text-amber-300">{nome}</span>!
+            {finalizada ? "🏆 Jornada concluída por " : "Boa jornada, Capitão(ã) "}
+            <span className="font-bold text-amber-300">{nome}</span>
+            {finalizada ? "! Tesouro conquistado!" : "!"}
           </p>
         )}
       </main>
