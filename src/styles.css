@@ -225,3 +225,18 @@
   margin-left:5px
 }
 
+/* ============================================================
+   AVATAR NO BAÚ (posição final ao clicar em "Finalizar Jornada")
+   ============================================================
+   Quando a jornada é finalizada, o avatar recebe o id
+   #avatar-no-bau. Ajuste left/top abaixo para posicioná-lo
+   exatamente sobre o baú do tesouro no mapa.
+   As regras usam !important para sobrescrever o style inline.
+   ============================================================ */
+#avatar-no-bau {
+  left: 50% !important;
+  top: 93% !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+
