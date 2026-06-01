@@ -259,8 +259,8 @@
 #avatar-sereia.avatar-finalizada,
 #avatar-papagaio.avatar-finalizada,
 #avatar-monstro.avatar-finalizada {
-  left: 55% !important;
-  top: -10% !important;
+  left: 15% !important;
+  top: 40% !important;
   transform: translate(-50%, -50%) !important;
 }
 
