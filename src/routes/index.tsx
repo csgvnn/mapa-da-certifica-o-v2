@@ -320,14 +320,15 @@ function MapaCertificacao() {
 
           {posPersonagem && (
             <img
+              id={finalizada ? "avatar-no-bau" : "avatar-no-mapa"}
               src={avatarAtual.img}
               alt={avatarAtual.nome}
-              className={`absolute w-16 md:w-20 pointer-events-none drop-shadow-[0_8px_8px_rgba(0,0,0,0.5)] transition-[left,top] duration-1000 ease-in-out -translate-x-1/2 ${
-                comemorando ? "animate-pirate-celebrate" : "animate-pirate-walk"
-              }`}
+              className={`avatar-mapa ${finalizada ? "avatar-no-bau" : ""} absolute w-16 md:w-20 pointer-events-none drop-shadow-[0_8px_8px_rgba(0,0,0,0.5)] transition-[left,top] duration-1000 ease-in-out -translate-x-1/2 ${
+                finalizada ? "-translate-y-1/2" : ""
+              } ${comemorando ? "animate-pirate-celebrate" : "animate-pirate-walk"}`}
               style={{
                 left: posPersonagem.left,
-                top: `calc(${posPersonagem.top} - 60px)`,
+                top: finalizada ? posPersonagem.top : `calc(${posPersonagem.top} - 60px)`,
               }}
             />
           )}
