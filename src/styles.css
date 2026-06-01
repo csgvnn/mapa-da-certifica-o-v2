@@ -226,17 +226,49 @@
 }
 
 /* ============================================================
-   AVATAR NO BAÚ (posição final ao clicar em "Finalizar Jornada")
+   AVATAR NO MAPA — Identificadores únicos por tipo de avatar
    ============================================================
-   Quando a jornada é finalizada, o avatar recebe o id
-   #avatar-no-bau. Ajuste left/top abaixo para posicioná-lo
-   exatamente sobre o baú do tesouro no mapa.
-   As regras usam !important para sobrescrever o style inline.
+   Cada avatar recebe um id único conforme o tipo selecionado:
+     #avatar-pirata     → Pirata
+     #avatar-sereia     → Sereia
+     #avatar-papagaio   → Papagaio
+     #avatar-monstro    → Monstro do Mar
+
+   Use a classe .avatar-finalizada (adicionada quando o usuário
+   clica em "Finalizar Jornada") para posicionar o avatar sobre
+   o baú do tesouro. Combine id + classe para ajustes finos.
+   Use !important para sobrescrever o style inline do React.
    ============================================================ */
-#avatar-no-bau {
+
+/* --- Posição de cada avatar caminhando pelo mapa (ajuste fino) --- */
+#avatar-pirata {
+  /* margin-left: 0px; margin-top: 0px; */
+}
+#avatar-sereia {
+  /* margin-left: 0px; margin-top: 0px; */
+}
+#avatar-papagaio {
+  /* margin-left: 0px; margin-top: 0px; */
+}
+#avatar-monstro {
+  /* margin-left: 0px; margin-top: 0px; */
+}
+
+/* --- Posição final ao clicar em "Finalizar Jornada" (sobre o baú) --- */
+#avatar-pirata.avatar-finalizada,
+#avatar-sereia.avatar-finalizada,
+#avatar-papagaio.avatar-finalizada,
+#avatar-monstro.avatar-finalizada {
   left: 50% !important;
   top: 93% !important;
   transform: translate(-50%, -50%) !important;
 }
+
+/* Exemplo: ajustar só a sereia ao finalizar
+#avatar-sereia.avatar-finalizada {
+  top: 91% !important;
+}
+*/
+
 
 
