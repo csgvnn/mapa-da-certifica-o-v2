@@ -38,16 +38,15 @@ type Etapa = {
 const ETAPAS: Etapa[] = [
   { id: 1, titulo: "Planejamento e Desenho de Políticas Públicas", tipo: "sequencial", left: "13.9%", top: "29.8%" },
   { id: 2, titulo: "Planejamento e Monitoramento Governamental", tipo: "sequencial", left: "38.1%", top: "31.7%" },
-  { id: 3, titulo: "Gestão e Elaboração de Planos Estratégicos", tipo: "sequencial", left: "62.4%", top: "27.0%" },
+  { id: 3, titulo: "Gestão Estratégica - construindo e acompanhando PEIs", tipo: "sequencial", left: "62.4%", top: "27.0%" },
   { id: 4, titulo: "Gestão dos objetivos e resultados chaves (OKRs) da organização", tipo: "sequencial", left: "88.0%", top: "27.5%" },
   { id: 5, titulo: "Transformando Metas e Objetivos Estratégicos em Projetos", tipo: "sequencial", left: "86.9%", top: "53.1%" },
-  { id: 6, titulo: "Análise de Dados Aplicadas à Rede SIPOFE", tipo: "sequencial", left: "67.6%", top: "53.1%" },
+  { id: 6, titulo: "Orçamento Público na Constituição Federal", tipo: "sequencial", left: "67.6%", top: "53.1%" },
   { id: 7, titulo: "Análise de Políticas Públicas", tipo: "sequencial", left: "46.8%", top: "56.4%" },
-  { id: 8, titulo: "Inteligência Artificial e Ferramentas Generativas (Livre EAD)", tipo: "flexivel", left: "29.7%", top: "54.1%" },
-  { id: 9, titulo: "Indicadores de Desempenho (Livre EAD)", tipo: "flexivel", left: "16.7%", top: "78.7%" },
-  { id: 10, titulo: "Design Thinking para Inovação no Setor Público (Livre)", tipo: "flexivel", left: "36.7%", top: "79.7%" },
-  { id: 11, titulo: "Execução Orçamentária e Financeira - Módulo I (Livre)", tipo: "flexivel", left: "56.6%", top: "79.7%" },
-  { id: 12, titulo: "Economia do Setor Público (Livre)", tipo: "flexivel", left: "75.3%", top: "78.7%" },
+  { id: 8, titulo: "Indicadores de Desempenho (Livre EAD)", tipo: "flexivel", left: "29.7%", top: "54.1%" },
+  { id: 9, titulo: "Design Thinking para Inovação no Setor Público (Livre)", tipo: "flexivel", left: "16.7%", top: "78.7%" },
+  { id: 10, titulo: "Execução Orçamentária e Financeira - Módulo I (Livre)", tipo: "flexivel", left: "36.7%", top: "79.7%" },
+  { id: 11, titulo: "Economia do Setor Público (Livre)", tipo: "flexivel", left: "56.6%", top: "79.7%" },
 ];
 
 // Posição do baú do tesouro no mapa (ajuste fino via styles.css se necessário)
