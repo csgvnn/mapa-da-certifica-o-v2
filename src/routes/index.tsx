@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { Check, Trophy, Flag } from "lucide-react";
-import treasureMap from "@/assets/treasure-map.png";
+import mapaBg from "@/assets/mapa-certificacao-bg.png.asset.json";
 import pirateImg from "@/assets/pirate.png";
 import mermaidImg from "@/assets/mermaid.png";
 import parrotImg from "@/assets/parrot.png";
@@ -285,7 +285,7 @@ function MapaCertificacao() {
 
       <main className="flex-1 p-4 lg:p-6">
         <div className="relative w-full max-w-[1400px] mx-auto rounded-2xl overflow-hidden shadow-2xl border-4 border-amber-900/60">
-          <img src={treasureMap} alt="Mapa" className="w-full h-auto block select-none" draggable={false} />
+          <img src={mapaBg.url} alt="Mapa" className="w-full h-auto block select-none" draggable={false} />
 
           {ETAPAS.map((e) => {
             const done = concluidas.includes(e.id);
